@@ -1,0 +1,29 @@
+{
+  "name": "docker-openvpn-http-ssh-proxy",
+  "version": "1.0.0",
+  "description": "Docker compose OpenVPN client with HTTP and SSH proxy",
+  "private": true,
+  "scripts": {
+    "lint": "prettier --write .",
+    "lint-ci": "prettier . --check",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=16.9.0",
+    "pnpm": ">=6.0.0"
+  },
+  "packageManager": "pnpm@6.25.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrauhu/docker-openvpn-http-ssh-proxy.git"
+  },
+  "author": "Sergey N <mrauhu@yandex.ru> (https://mrauhu.ru/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mrauhu/docker-openvpn-http-ssh-proxy/issues"
+  },
+  "homepage": "https://github.com/mrauhu/docker-openvpn-http-ssh-proxy#readme",
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}

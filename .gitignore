@@ -7,3 +7,9 @@
 # Configuration
 etc/ssh/*
 !etc/ssh/sshd_config
+
+## Node.js for development
+node_modules
+
+# Logs
+*.log
