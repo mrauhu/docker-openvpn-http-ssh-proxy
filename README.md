@@ -95,3 +95,8 @@ docker-compose down
 git pull --ff-only && docker-compose build
 ```
 
+## License
+
+Apache 2.0
+
+© Sergey N
