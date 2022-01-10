@@ -9,7 +9,7 @@ git clone https://github.com/mrauhu/docker-openvpn-http-ssh-proxy
 ```
 
 ```
-cd cd docker-openvpn-http-ssh-proxy
+cd docker-openvpn-http-ssh-proxy
 ```
 
 2. Create the `config/` directory:
