@@ -12,11 +12,7 @@ git clone https://github.com/mrauhu/docker-openvpn-http-ssh-proxy
 cd docker-openvpn-http-ssh-proxy
 ```
 
-2. Create the `config/` directory:
-
-```
-mkdir -p config
-```
+2. Copy your OpenVPN client config with certificates to the `config/` directory.
 
 3. Copy your OpenVPN client config with certificates to the `config/` directory.
 

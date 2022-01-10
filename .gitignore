@@ -5,6 +5,5 @@
 .env
 
 # Configuration
-config
 etc/ssh
 root/.ssh
