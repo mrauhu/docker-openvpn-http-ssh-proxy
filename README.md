@@ -38,7 +38,7 @@
     OPENVPN_CONFIG_FILE=
     ```
 
-    Optionally, you can change values:
+    Optionally, you can override default values in the `.env` file:
 
     ```shell
     OPENVPN_HOST=127.0.0.1
