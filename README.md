@@ -150,6 +150,10 @@ docker-compose down
 git pull --ff-only && docker-compose build
 ```
 
+## Contributing
+
+Read the [How to contribute](./CONTRIBUTING.md) guide.
+
 ## License
 
 Apache 2.0
