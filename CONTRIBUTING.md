@@ -31,11 +31,11 @@ Same as in [README.md](./README.md#prerequisites) plus:
    corepack enable
    ```
 
-4.Install dependencies:
+4. Install dependencies:
 
-```
-pnpm i
-```
+   ```
+   pnpm i
+   ```
 
 ## Development
 
