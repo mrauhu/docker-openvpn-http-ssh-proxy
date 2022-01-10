@@ -18,9 +18,6 @@ services:
       - NET_ADMIN
     devices:
       - /dev/net/tun
-    #dns:
-    #  - 1.1.1.1
-    #  - 1.0.0.1
     env_file:
       - .env.defauts
       - .env
