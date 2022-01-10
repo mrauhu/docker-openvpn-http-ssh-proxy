@@ -13,21 +13,25 @@
 [d]: https://www.docker.com/products/docker-desktop
 
 
+## Installation
+
+Clone repository:
+
+```
+git clone https://github.com/mrauhu/docker-openvpn-http-ssh-proxy
+```
+
+```
+cd docker-openvpn-http-ssh-proxy
+```
+
 ## Setup
 
-1. Clone repository:
+### OpenVPN client
 
-    ```
-    git clone https://github.com/mrauhu/docker-openvpn-http-ssh-proxy
-    ```
-    
-    ```
-    cd docker-openvpn-http-ssh-proxy
-    ```
+1. Copy your OpenVPN client config with certificates to the `config/` directory.
 
-2. Copy your OpenVPN client config with certificates to the `config/` directory.
-
-3. Create the `.env` file and set values:
+2. Create the `.env` file and set values:
 
     ```shell
     OPENVPN_USERNAME=
@@ -47,33 +51,74 @@
     OPENVPN_PROXY_SSH_PORT=2222
     ```
 
-5. Use the Proxy Auth-Configuration (PAC) script URL:
+### HTTP proxy
 
-    ```
-    http://127.0.0.1:8081
-    ```
-    
-    > The URL based on pattern built from environment variables:    
-    >
-    > ```
-    > http://${OPENVPN_HOST}:${OPENVPN_PROXY_AUTO_CONFIGURATION_PORT}
-    > ```
+Use the Proxy Auth-Configuration (PAC) script URL:
+
+```
+http://127.0.0.1:8081
+```
+
+> The URL based on pattern built from environment variables:    
+>
+> ```
+> http://${OPENVPN_HOST}:${OPENVPN_PROXY_AUTO_CONFIGURATION_PORT}
+> ```
+
+For:
+
+* macOS
   
-    For:
+  In _System Preferences — Network — Proxies — Automatic Proxy Configuration protocol_:
+  * set _Proxy Configuration File URL_.
+
+* Windows
+
+  In _Settings — Network & Internet — Proxy_:
+     
+  * check:
+    * _Automatically detect settings_;
+    * _Use script setup_;
+  * set _Script address_.
+
+### SSH proxy
+
+As example, for Git:
+
+1. Edit the `.ssh/config` file, for:   
 
    * macOS
-  
-     In _System Preferences — Network — Proxies — Automatic Proxy Configuration protocol_:
-     * set _Proxy Configuration File URL_.
+   
+     ```shell
+     nano ~/.ssh/config
+     ```
 
    * Windows
+   
+     ```cmd 
+     notepad %USERPROFILE%\.ssh\config
+     ```
 
-     In _Settings — Network & Internet — Proxy_:
-     
-     * check:
-       * _Automatically detect settings_;
-       * _Use script setup_;
-     * set _Script address_.
+2. Add lines:
+
+    ```
+    Host REMOTE_HOST_NAME
+      Hostname REMOTE_HOST_NAME
+      User git
+      IdentityFile ~/.ssh/PRIVATE_KEY_FILE
+      ProxyCommand ssh -W %h:%p ssh-proxy
+    
+    Host ssh-proxy
+      Hostname 127.0.0.1
+      Port 2222
+      User root
+      IdentityFile ~/.ssh/PRIVATE_KEY_FILE
+    ```
+    
+    And substitute variables:
+
+    * `REMOTE_HOST_NAME` — name of a remote host, example: `git.example.com`;
+    * `PRIVATE_KEY_FILE` — your private key file, example: `id_ed25519`.
 
 ## Usage
 
