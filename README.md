@@ -31,20 +31,35 @@ OPENVPN_TUNNEL_HOSTS=
 OPENVPN_CONFIG_FILE=
 ```
 
-5. Use the `http://127.0.0.1:8081` address:
+Optionally, you can change ports:
 
-  * macOS
+```shell
+OPENVPN_PROXY_AUTO_CONFIGURATION_PORT=8081
+OPENVPN_PROXY_HTTP_PORT=8080
+OPENVPN_PROXY_SSH_PORT=2222
+```
 
-      In _System Preferences — Network — Proxies — Automatic Proxy Configuration protocol_ as _Proxy Configuration File URL_.
+5. Use Proxy Auth-Configuration URL:
 
-  * Windows
-    
-    In _Settings — Network & Internet — Proxy_ as _Script address_.
-    
-    And set:
+    ```
+    http://127.0.0.1:8081
+    ```
+  
+    For:
 
-    * _Automatically detect settings_;
-    * _Use script setup_.
+   * macOS
+  
+     In _System Preferences — Network — Proxies — Automatic Proxy Configuration protocol_:
+     * set _Proxy Configuration File URL_.
+
+   * Windows
+
+     In _Settings — Network & Internet — Proxy_:
+     
+     * check:
+       * _Automatically detect settings_;
+       * _Use script setup_;
+     * set _Script address_.
 
 ## Usage
 
