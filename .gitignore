@@ -7,4 +7,3 @@
 # Configuration
 etc/ssh/*
 !etc/ssh/sshd_config
-root/.ssh
