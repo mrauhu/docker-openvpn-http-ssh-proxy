@@ -1,45 +1,63 @@
 # Docker compose OpenVPN client with HTTP and SSH proxy
 
+> Provides a [Proxy Auto-Configuration][pac] script URL for easy setup.
+
+[pac]: https://en.wikipedia.org/wiki/Proxy_auto-config
+
+## Prerequisites
+
+- [Git][g];
+- [Docker Desktop][d].
+
+[g]: https://git-scm.com/
+[d]: https://www.docker.com/products/docker-desktop
+
+
 ## Setup
 
 1. Clone repository:
 
-```
-git clone https://github.com/mrauhu/docker-openvpn-http-ssh-proxy
-```
-
-```
-cd docker-openvpn-http-ssh-proxy
-```
+    ```
+    git clone https://github.com/mrauhu/docker-openvpn-http-ssh-proxy
+    ```
+    
+    ```
+    cd docker-openvpn-http-ssh-proxy
+    ```
 
 2. Copy your OpenVPN client config with certificates to the `config/` directory.
 
-3. Copy your OpenVPN client config with certificates to the `config/` directory.
+3. Create the `.env` file and set values:
 
-4. Create the `.env` file and set values:
+    ```shell
+    OPENVPN_USERNAME=
+    OPENVPN_PASSWORD=
+    # Comma separated list, like: `a.example.com,b.example.com,*.internal.example.com`
+    OPENVPN_TUNNEL_HOSTS=
+    # Name of config file, like: `config.ovpn`
+    OPENVPN_CONFIG_FILE=
+    ```
 
-```shell
-OPENVPN_USERNAME=
-OPENVPN_PASSWORD=
-# Comma separated list, like: `a.example.com,b.example.com,*.internal.example.com`
-OPENVPN_TUNNEL_HOSTS=
-# Name of config file, like: `config.ovpn`
-OPENVPN_CONFIG_FILE=
-```
+    Optionally, you can change values:
 
-Optionally, you can change ports:
+    ```shell
+    OPENVPN_HOST=127.0.0.1
+    OPENVPN_PROXY_AUTO_CONFIGURATION_PORT=8081
+    OPENVPN_PROXY_HTTP_PORT=8080
+    OPENVPN_PROXY_SSH_PORT=2222
+    ```
 
-```shell
-OPENVPN_PROXY_AUTO_CONFIGURATION_PORT=8081
-OPENVPN_PROXY_HTTP_PORT=8080
-OPENVPN_PROXY_SSH_PORT=2222
-```
-
-5. Use Proxy Auth-Configuration URL:
+5. Use the Proxy Auth-Configuration (PAC) script URL:
 
     ```
     http://127.0.0.1:8081
     ```
+    
+    > The URL based on pattern built from environment variables:    
+    >
+    > ```
+    > http://${OPENVPN_HOST}:${OPENVPN_PROXY_AUTO_CONFIGURATION_PORT}
+    > ```
   
     For:
 
@@ -65,9 +83,15 @@ OPENVPN_PROXY_SSH_PORT=2222
 docker-compose up -d
 ```
 
-### Down
+### Stop and remove containers
 
 ```
-docker-compose down -v
+docker-compose down
+```
+
+### Update and rebuild images
+
+```
+git pull --ff-only && docker-compose build
 ```
 
