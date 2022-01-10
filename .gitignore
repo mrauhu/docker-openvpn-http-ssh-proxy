@@ -1,8 +1,10 @@
 # JetBrains IDE
 .idea
 
+# Env variables
+.env
+
 # Configuration
-.env.local
 config
 etc/ssh
 root/.ssh
