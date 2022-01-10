@@ -20,7 +20,7 @@ mkdir -p config
 
 3. Copy your OpenVPN client config with certificates to the `config/` directory.
 
-4. Create the `.env.local` file and set values:
+4. Create the `.env` file and set values:
 
 ```shell
 OPENVPN_USERNAME=
