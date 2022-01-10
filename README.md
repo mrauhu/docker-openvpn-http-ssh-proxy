@@ -120,6 +120,16 @@ As example, for Git:
     * `REMOTE_HOST_NAME` — name of a remote host, example: `git.example.com`;
     * `PRIVATE_KEY_FILE` — your private key file, example: `id_ed25519`.
 
+3. Add content of a public key file to the `root/.ssh/authorized_keys` file:
+
+   ```
+   cat PUBLIC_KEY_FILE >> root/.ssh/authorized_keys 
+   ```
+
+   Where:
+
+   * `PUBLIC_KEY_FILE` — your public key file, example `id_ed25519.pub`.
+
 ## Usage
 
 ### Start in background
