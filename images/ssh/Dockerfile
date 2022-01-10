@@ -7,6 +7,7 @@ VOLUME /root/.ssh
 VOLUME /etc/ssh
 
 COPY run.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/run.sh
 
 EXPOSE 22
 
