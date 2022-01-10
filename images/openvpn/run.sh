@@ -1,15 +1,5 @@
 #!/usr/bin/env sh
 
-printenv
-echo "before ip route"
-ip route
-# so return traffic that went through VPN works
-gw=$(ip route | awk '/default/ {print $3}')
-echo $gw
-#ip route add to $LOCAL_NETWORK via $gw dev eth0
-
-ls -la
-
 # Enable compatability layer with Alpine
 MERGED_CONFIG_FILE=merged.config.ovpn
 
