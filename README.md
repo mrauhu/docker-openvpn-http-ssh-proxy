@@ -12,7 +12,6 @@
 [g]: https://git-scm.com/
 [d]: https://www.docker.com/products/docker-desktop
 
-
 ## Installation
 
 Clone repository:
@@ -33,23 +32,23 @@ cd docker-openvpn-http-ssh-proxy
 
 2. Create the `.env` file and set values:
 
-    ```shell
-    OPENVPN_USERNAME=
-    OPENVPN_PASSWORD=
-    # Comma separated list, like: `a.example.com,b.example.com,*.internal.example.com`
-    OPENVPN_TUNNEL_HOSTS=
-    # Name of config file, like: `config.ovpn`
-    OPENVPN_CONFIG_FILE=
-    ```
+   ```shell
+   OPENVPN_USERNAME=
+   OPENVPN_PASSWORD=
+   # Comma separated list, like: `a.example.com,b.example.com,*.internal.example.com`
+   OPENVPN_TUNNEL_HOSTS=
+   # Name of config file, like: `config.ovpn`
+   OPENVPN_CONFIG_FILE=
+   ```
 
-    Optionally, you can override default values in the `.env` file:
+   Optionally, you can override default values in the `.env` file:
 
-    ```shell
-    OPENVPN_HOST=127.0.0.1
-    OPENVPN_PROXY_AUTO_CONFIGURATION_PORT=8081
-    OPENVPN_PROXY_HTTP_PORT=8080
-    OPENVPN_PROXY_SSH_PORT=2222
-    ```
+   ```shell
+   OPENVPN_HOST=127.0.0.1
+   OPENVPN_PROXY_AUTO_CONFIGURATION_PORT=8081
+   OPENVPN_PROXY_HTTP_PORT=8080
+   OPENVPN_PROXY_SSH_PORT=2222
+   ```
 
 ### HTTP proxy
 
@@ -59,7 +58,7 @@ Use the Proxy Auth-Configuration (PAC) script URL:
 http://127.0.0.1:8081
 ```
 
-> The URL based on pattern built from environment variables:    
+> The URL based on pattern built from environment variables:
 >
 > ```
 > http://${OPENVPN_HOST}:${OPENVPN_PROXY_AUTO_CONFIGURATION_PORT}
@@ -67,68 +66,69 @@ http://127.0.0.1:8081
 
 For:
 
-* macOS
-  
-  In _System Preferences — Network — Proxies — Automatic Proxy Configuration protocol_:
-  * set _Proxy Configuration File URL_.
+- macOS
 
-* Windows
+  In _System Preferences — Network — Proxies — Automatic Proxy Configuration protocol_:
+
+  - set _Proxy Configuration File URL_.
+
+- Windows
 
   In _Settings — Network & Internet — Proxy_:
-     
-  * check:
-    * _Automatically detect settings_;
-    * _Use script setup_;
-  * set _Script address_.
+
+  - check:
+    - _Automatically detect settings_;
+    - _Use script setup_;
+  - set _Script address_.
 
 ### SSH proxy
 
 As example, for Git:
 
-1. Edit the `.ssh/config` file, for:   
+1. Edit the `.ssh/config` file, for:
 
-   * macOS
-   
+   - macOS
+
      ```shell
      nano ~/.ssh/config
      ```
 
-   * Windows
-   
-     ```cmd 
+   - Windows
+
+     ```cmd
      notepad %USERPROFILE%\.ssh\config
      ```
 
 2. Add lines:
 
-    ```
-    Host REMOTE_HOST_NAME
-      Hostname REMOTE_HOST_NAME
-      User git
-      IdentityFile ~/.ssh/PRIVATE_KEY_FILE
-      ProxyCommand ssh -W %h:%p ssh-proxy
-    
-    Host ssh-proxy
-      Hostname 127.0.0.1
-      Port 2222
-      User root
-      IdentityFile ~/.ssh/PRIVATE_KEY_FILE
-    ```
-    
-    And substitute variables:
+   ```
+   Host REMOTE_HOST_NAME
+     Hostname REMOTE_HOST_NAME
+     User git
+     IdentityFile ~/.ssh/PRIVATE_KEY_FILE
+     ProxyCommand ssh -W %h:%p ssh-proxy
 
-    * `REMOTE_HOST_NAME` — name of a remote host, example: `git.example.com`;
-    * `PRIVATE_KEY_FILE` — your private key file, example: `id_ed25519`.
+   Host ssh-proxy
+     Hostname 127.0.0.1
+     Port 2222
+     User root
+     IdentityFile ~/.ssh/PRIVATE_KEY_FILE
+   ```
+
+   And substitute variables:
+
+   - `REMOTE_HOST_NAME` — name of a remote host, example: `git.example.com`;
+   - `PRIVATE_KEY_FILE` — your private key file, example: `id_ed25519`.
 
 3. Add content of a public key file to the `root/.ssh/authorized_keys` file:
 
    ```
-   cat PUBLIC_KEY_FILE >> root/.ssh/authorized_keys 
+   cat PUBLIC_KEY_FILE >> root/.ssh/authorized_keys
    ```
 
    Where:
 
-   * `PUBLIC_KEY_FILE` — your public key file, example `id_ed25519.pub`.
+   - `PUBLIC_KEY_FILE` — your public key file, example `id_ed25519.pub`.
 
 ## Usage
 
